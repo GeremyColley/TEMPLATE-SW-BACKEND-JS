@@ -10,7 +10,7 @@ app.use(cors());
 app.use(morgan("dev"));
 
 mongoose.set("strictQuery", false);
-mongoose.connect(process.env.MONGODB_NET);
+mongoose.connect(process.env.MONGODB);
 
 const userRoutes = require("./routes/user");
 const projetRoutes = require("./routes/projet");
