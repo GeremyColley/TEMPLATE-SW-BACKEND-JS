@@ -15,7 +15,7 @@ router.get("/offer", async (req,res) => {
         filters.titre = new RegExp(req.query.title, "i");
       }
 
-      const cctProjet = await Projet.find(filters);
+      const cctProjet = await Offer.find(filters);
       console.log(cctProjet);
       res.json(cctProjet);
     } catch (error) {
