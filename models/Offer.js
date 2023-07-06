@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const Offer = mongoose.model("Offer", {
-    Titre: String,
-    Date: { type: Date, default: Date.now },
-    Montant: Number,
-    Comment: String,
-    Nombre: Number,
+    titre: String,
+    date: { type: Date, default: Date.now },
+    montant: Number,
+    comment: String,
+    nombre: Number,
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",

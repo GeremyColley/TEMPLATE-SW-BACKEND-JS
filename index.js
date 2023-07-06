@@ -13,9 +13,9 @@ mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGODB);
 
 const userRoutes = require("./routes/user");
-const projetRoutes = require("./routes/offer");
+const offerRoutes = require("./routes/offer");
 app.use(userRoutes);
-app.use(projetRoutes);
+app.use(offerRoutes);
 
 app.get("/", (req, res) => {
   res.json({message : "Bienvenue sur L'API"});
