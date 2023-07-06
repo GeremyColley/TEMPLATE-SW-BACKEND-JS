@@ -46,4 +46,21 @@ router.post("/offer/create", async (req, res) => {
   }
 });
 
+
+router.post(
+  "/offer/connect",
+  isAuthenticated,
+  (req, res) => {
+    try {
+      console.log("Je rentre dans ma route");
+      console.log(req.user);
+      res.json({
+        connect: "Welcome",
+      });
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  }
+);
+
 module.exports = router;

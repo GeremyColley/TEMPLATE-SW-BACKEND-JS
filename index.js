@@ -12,8 +12,8 @@ app.use(morgan("dev"));
 mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGODB);
 
-const userRoutes = require("./routes/user");
 const offerRoutes = require("./routes/offer");
+const userRoutes = require("./routes/user");
 
 app.use(userRoutes);
 app.use(offerRoutes);
