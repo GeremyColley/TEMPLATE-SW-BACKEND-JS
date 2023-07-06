@@ -12,7 +12,7 @@ router.get("/offer", async (req,res) => {
       let filters = {};
 
       if (req.query.title) {
-        filters.NomProjet = new RegExp(req.query.title, "i");
+        filters.titre = new RegExp(req.query.title, "i");
       }
 
       const cctProjet = await Projet.find(filters);
