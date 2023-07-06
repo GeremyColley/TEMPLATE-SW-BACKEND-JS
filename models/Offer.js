@@ -6,10 +6,7 @@ const Offer = mongoose.model("Offer", {
     montant: Number,
     comment: String,
     nombre: Number,
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-    },
+    owner: String,
 });
 
 module.exports = Offer;

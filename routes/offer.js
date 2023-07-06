@@ -4,7 +4,7 @@ const router = express.Router();
 const Offer = require('../models/Offer');
 const User = require("../models/User");
 
-router.get("/offers", async (req,res) => {
+router.get("/offer", async (req,res) => {
     console.log("route : /");
     try {
 
@@ -22,7 +22,7 @@ router.get("/offers", async (req,res) => {
     }
 });
 
-router.post("/create", async (req, res) => {
+router.post("/offer/create", async (req, res) => {
   console.log("route : /create"); 
   console.log("Compass : " + process.env.MONGODB_URI_NET);
  
@@ -34,17 +34,13 @@ router.post("/create", async (req, res) => {
       montant: req.body.montant,
       comment: req.body.comment,
       nombre: req.body.nombre,
-      owner: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-      },
+      owner: req.body.idLogin,
     });
 
     await newOffer.save();
    
     res.json({ message: "newOffer" });
 
- 
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
