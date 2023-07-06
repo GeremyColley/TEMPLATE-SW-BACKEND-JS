@@ -1,11 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const Projet = require('../models/Projet');
+const Offer = require('../models/Offer');
 const User = require("../models/User");
 
-
-router.get("/projets", async (req,res) => {
+router.get("/offers", async (req,res) => {
     console.log("route : /");
     try {
 
@@ -22,7 +21,6 @@ router.get("/projets", async (req,res) => {
       res.status(400).json({ error: error.message });
     }
 });
-
 
 
 module.exports = router;

@@ -13,7 +13,7 @@ mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGODB);
 
 const userRoutes = require("./routes/user");
-const projetRoutes = require("./routes/projet");
+const projetRoutes = require("./routes/offer");
 app.use(userRoutes);
 app.use(projetRoutes);
 
