@@ -5,7 +5,9 @@ const encBase64 = require("crypto-js/enc-base64");
 const router = express.Router();
 
 const isAuthenticated = require("../middleware/isAuthenticated");
+const Offer = require('../models/Offer');
 const User = require("../models/User");
+
 
 router.post("/user/signup", async (req, res) => {
   try {
