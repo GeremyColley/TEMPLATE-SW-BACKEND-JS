@@ -23,19 +23,28 @@ router.get("/offer", async (req,res) => {
     }
 });
 
-router.post("/offer/create", async (req, res) => {
-  console.log("route : /create"); 
-  console.log("Compass : " + process.env.MONGODB_URI_NET);
+
+router.post("/offer/create",
+  async (req, res) => {
+  console.log("route : /offer/create"); 
+  console.log("Compass : " + process.env.MONGODB);
  
   try {
-    
+    const {titre, date, montant, comment, nombre, idLogin } = req.body
+    console.log("titre " +  req.body.titre);
+    console.log("date " +  req.body.date);
+    console.log("montant " +  req.body.montant);
+    console.log("comment " +  req.body.comment);
+    console.log("nombre " +  req.body.nombre);
+    console.log("idLogin " +  req.body.idLogin);
+
     const newOffer = new Offer({
-      titre: req.body.titre,
-      date: req.body.date,
-      montant: req.body.montant,
-      comment: req.body.comment,
-      nombre: req.body.nombre,
-      owner: req.body.idLogin,
+      titre: titre,
+      date: date,
+      montant: montant,
+      comment: comment,
+      nombre: nombre,
+      owner: idLogin,
     });
 
     await newOffer.save();
@@ -47,6 +56,18 @@ router.post("/offer/create", async (req, res) => {
   }
 });
 
+
+
+
+router.get("/offer/:id", async (req, res) => {
+  try {
+    const offer = await Offer.findById(req.params.id);
+    res.json(offer);
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({ message: error.message });
+  }
+});
 
 router.post(
   "/offer/connect",
