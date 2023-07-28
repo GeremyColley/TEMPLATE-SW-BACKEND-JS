@@ -23,7 +23,6 @@ router.get("/offer", async (req,res) => {
     }
 });
 
-
 router.post("/offer/create",
   async (req, res) => {
   console.log("route : /offer/create"); 
@@ -56,9 +55,6 @@ router.post("/offer/create",
   }
 });
 
-
-
-
 router.get("/offer/:id", async (req, res) => {
   try {
     const offer = await Offer.findById(req.params.id);
@@ -67,6 +63,32 @@ router.get("/offer/:id", async (req, res) => {
     console.log(error.message);
     res.status(400).json({ message: error.message });
   }
+});
+
+router.put("/offer/update/:id", 
+  isAuthenticated,
+  async (req, res) => {
+  console.log("Montant : " + req.body.montant);
+  const offerToUpdate = await Offer.findById(req.params.id);
+    
+  if (req.body.montant) {
+    offerToUpdate.montant = req.body.montant;
+  }
+
+  if (req.body.comment) {
+    offerToUpdate.comment = req.body.comment;
+  }
+
+  await offerToUpdate.save();
+  res.json({ message: "Offer updated !" });
+
+});
+
+router.delete("/offer/delete/:id",
+  isAuthenticated, 
+  async (req, res) => {
+  const offerToDelete = await Offer.findByIdAndDelete(req.params.id);
+  res.json({ message: "Offer deleted" });
 });
 
 router.post(

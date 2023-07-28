@@ -8,6 +8,7 @@ const isAuthenticated = require("../middleware/isAuthenticated");
 const Offer = require('../models/Offer');
 const User = require("../models/User");
 
+// https://jasonwatmore.com/post/2021/08/24/axios-http-put-request-examples
 
 router.post("/user/signup", async (req, res) => {
   try {
