@@ -13,8 +13,8 @@ router.post("/user/signup", async (req, res) => {
   try {
     console.log(req.body);
     console.log(req.body.username);
-    // Destructuring
 
+    // Destructuring
     const { username, email, password, newsletter } = req.body;
 
     if (!username || !email || !password || typeof newsletter !== "boolean") {
@@ -85,6 +85,34 @@ router.post("/user/login", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+
+//https://jasonwatmore.com/post/2021/04/22/react-axios-http-put-request-examples
+router.put("/user/update/:id", 
+  isAuthenticated,
+  async (req, res) => {
+
+  const userToUpdate = await User.findById(req.params.id);
+
+  if (req.body.username) {
+    userToUpdate.account.username = req.body.username;
+  }
+
+  if (req.body.newsletter) {
+    userToUpdate.newsletter = req.body.newsletter;
+  }
+
+  await userToUpdate.save();
+  res.json({ message: "User updated !" });
+
+});
+
+router.delete("/user/delete/:id",
+  isAuthenticated, 
+  async (req, res) => {
+  const userToDelete = await User.findByIdAndDelete(req.params.id);
+  res.json({ message: "User deleted" });
+});
+
 
 router.post(
   "/user/connect",
